@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+env/
+result
+
+.direnv/
+.venv/**
+.venv/
+.vscode/
+.ipynb_checkpoints/
+shell.nix
