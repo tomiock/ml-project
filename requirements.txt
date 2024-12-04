@@ -1,2 +1,6 @@
-jupyterlab
 ucimlrepo
+seaborn
+numpy
+pandas
+matplotlib
+scikit-learn

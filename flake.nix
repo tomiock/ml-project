@@ -24,8 +24,17 @@
                     text = builtins.readFile ./flake.nix;
                 };
 
-        # Script to install the flake template
-        installScript = pkgs.writeScriptBin "install-template" ''
+                opencv4-python = pythonPackages.opencv4.override {
+                    enableGtk3 = true;
+                    enableFfmpeg = true;
+                    enablePython = true;
+                    gtk3 = pkgs.gtk3;
+                    inherit (pkgs) ffmpeg;
+                };                # Define a separate file for the flake template to avoid embedding issues
+
+
+                # Script to install the flake template
+                installScript = pkgs.writeScriptBin "install-template" ''
           #!${pkgs.bash}/bin/bash
           if [ -f flake.nix ]; then
             echo "flake.nix already exists in current directory. Aborting."
@@ -50,7 +59,7 @@ EOF
 
           echo "Template installed successfully!"
           echo "You can now use 'nix develop' in this directory."
-        '';
+                '';
             in
                 {
                 devShells.default = pkgs.mkShell {
@@ -58,10 +67,16 @@ EOF
                         pythonPackages.matplotlib
                         pythonPackages.numpy
                         pythonPackages.pandas
+                        pythonPackages.seaborn
                         pythonPackages.venvShellHook
                         pythonPackages.jupyterlab
                         pythonPackages.ipykernel
+
                         pkgs.uv # pip alternative
+                        direnv
+
+                        opencv4-python
+
                         installScript
                     ];
 
