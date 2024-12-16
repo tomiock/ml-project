@@ -68,6 +68,7 @@ EOF
                         pythonPackages.numpy
                         pythonPackages.pandas
                         pythonPackages.seaborn
+                        pythonPackages.tqdm
                         pythonPackages.venvShellHook
                         pythonPackages.jupyterlab
                         pythonPackages.ipykernel

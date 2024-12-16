@@ -9,3 +9,4 @@ result
 .vscode/
 .ipynb_checkpoints/
 shell.nix
+ml_project.zip
